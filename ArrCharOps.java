@@ -170,10 +170,6 @@ public static int hash(char[] arr) {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-/** * Compares the two strings lexicographically based on their Unicode values.
- * Assumes both strings are not empty.
- * @return -1 if str1 is less than str2, 0 if equal, and 1 if str1 is greater than str2.
- */
     // הנחה: שתי המחרוזות אינן ריקות (עפ"י דרישת התרגיל)
     int len1 = str1.length();
     int len2 = str2.length();

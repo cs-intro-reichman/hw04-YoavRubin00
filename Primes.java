@@ -12,7 +12,7 @@ public class Primes {
         }
         boolean[] isPrime = new boolean[n + 1];
         //אתחול כל הערכים להיות במערך
-        for(int i = 0;i<isPrime.length;i++){
+        for(int i = 2;i<isPrime.length;i++){
             if(isPrime(i)){
                 isPrime[i]=true;
             }else{
@@ -26,7 +26,7 @@ public class Primes {
             count ++;
         }
     }
-    System.out.println("There are " + count + " primes between 2 and "+ n +" "+(double)((n-1)/count)*100+"% are primes");
+    System.out.println("There are " + count + " primes between 2 and "+ n +" "+(double)(count/(n-1))*100+"% are primes");
     }
   public static boolean isPrime(int x) {
     if(x==1)

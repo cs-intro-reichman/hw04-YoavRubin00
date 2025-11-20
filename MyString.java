@@ -1,4 +1,4 @@
-public class MyString {
+    public class MyString {
     public static void main(String[] args) {
         System.out.println("Testing lowercase:");
         System.out.println("UnHappy : " + lowerCase("UnHappy"));
@@ -31,7 +31,7 @@ public class MyString {
             }
             return newstr;
         }
-    }
+    
 
     /** If str1 contains str2, returns true; otherwise returns false. */
     public static boolean contains(String str1, String str2) {
@@ -55,4 +55,5 @@ public class MyString {
         }
         return false;
     }
+}
 }
