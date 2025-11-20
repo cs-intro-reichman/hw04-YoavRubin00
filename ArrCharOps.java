@@ -37,14 +37,21 @@ public class ArrCharOps {
      */
     public static char charAt(char[] arr, int index) {
         // Replace the following statement with your code
-        return 0;
+        return arr[index];
     }
 
     /** If the two arrays have the same value in every index, 
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
+        if(arr1.length == arr2.length){
+        for (int i = 0; i<arr1.length; i++){
+            if (arr1[i]!=arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+        }
         return false;
     }
 
@@ -52,30 +59,50 @@ public class ArrCharOps {
      *  If no such character is found, returns -1.
      */
     public static int indexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
+        for(int i = 0; i<arr.length; i++){
+            if(ch == arr[i]){
+                return i;
+            }
+        }
         return -1;
     }
 
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        // Replace the following statement with your code
+        for(int i = fromIndex; i<arr.length; i++){
+            if(ch == arr[i]){
+                return i;
+            }
+        }
         return -1;
     }
+
 
     /** Returns the index within the given arr of the last occurrence of the given character.
      *  If no such character is found, returns -1.
      */
     public static int lastIndexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
+        for(int i = arr.length-1; i>=0; i--){
+            if(ch == arr[i]){
+                return i;
+            }
+        }
         return -1;
     }
 
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return null;
+     int totalLength = arr1.length + arr2.length;
+     char[] concatenatedArr = new char[totalLength];
+     for (int i=0; i<arr1.length;i++){
+        concatenatedArr[i] = arr1[i];
+     }
+     for (int i=0; i<arr2.length;i++){
+        concatenatedArr[arr1.length+i] = arr2[i];
+     }
+        return concatenatedArr;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -85,7 +112,14 @@ public class ArrCharOps {
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
         // Replace the following statement with your code
-        return null;
+        int totalLength = endIndex - beginIndex;
+        int j= 0;
+        char[] newArr = new char[totalLength];
+             for (int i=beginIndex; i<endIndex;i++){
+        newArr[j] = arr[i];
+        j++;
+     }
+    return newArr;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -96,8 +130,18 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        // Replace the following statement with your code
-        return 0;
+// בהנחה שאתה נמצא במחלקה ArrCharops, שיש לה גישה למתודות plus ו-times.
+
+public static int hash(char[] arr) {
+        if (arr.length == 0) {
+            return 0;
+        }
+        int hashValue = 0;
+        final int HASH_BASE = 7; 
+        for (int i = 0; i < arr.length; i++) {
+            hashValue = hashValue * HASH_BASE + arr[i];
+        }
+        return hashValue;
     }
 
     /**
@@ -126,7 +170,39 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        return 0;
+/** * Compares the two strings lexicographically based on their Unicode values.
+ * Assumes both strings are not empty.
+ * @return -1 if str1 is less than str2, 0 if equal, and 1 if str1 is greater than str2.
+ */
+    // הנחה: שתי המחרוזות אינן ריקות (עפ"י דרישת התרגיל)
+    int len1 = str1.length();
+    int len2 = str2.length();
+    // האינדקס המקסימלי שנבדוק הוא האורך של המחרוזת הקצרה יותר
+    int minLength = Math.min(len1, len2);
+    // שלב 1: השוואה תו-אחר-תו (עד לאורך המחרוזת הקצרה יותר)
+    for (int i = 0; i < minLength; i++) {
+        char char1 = str1.charAt(i);
+        char char2 = str2.charAt(i);
+        if (char1 != char2) {
+            if (char1 < char2) {
+                // אם התו ב-str1 קטן יותר (למשל 'a' לעומת 'b')
+                return -1;
+            } else {
+                // אם התו ב-str1 גדול יותר (למשל 't' לעומת 'k')
+                return 1;
+            }
+        }
     }
+    // 3. בדיקה אם המחרוזות שוות באורך (שוויון מלא)
+    if (len1 == len2) {
+        return 0; // "hello" שווה ל-"hello"
+    } 
+    else if (len1 < len2) {
+        // str1 קצרה יותר וכל התווים שלה זהים לתווים ב-str2
+        return -1; // "abc" קטן מ-"abcd"
+    } 
+    else {
+        return 1; // "abcd" גדול מ-"abc"
+    }
+}
 }
