@@ -11,31 +11,31 @@ public class Primes {
             return;
         }
         boolean[] isPrime = new boolean[n + 1];
-        //אתחול כל הערכים להיות במערך
-        for(int i = 0;i<isPrime.length;i++){
-            if(isPrime(i)){
-                isPrime[i]=true;
-            }else{
-                isPrime[i]=false;
+        for (int i = 2; i <= n; i++) {
+            isPrime[i] = true;
+        }
+        int p = 2;
+        while (p * p <= n) {
+            if (isPrime[p]) {
+                int i = p * p;
+                while (i <= n) {
+                    isPrime[i] = false;
+                    i += p; 
+                }
+            }
+            p++;
+        }
+        System.out.println("Prime numbers up to " + n + ":");
+        int count = 0;
+        for (int i = 2; i <= n; i++) { 
+            if (isPrime[i]) {
+                System.out.println(i);
+                count++;
             }
         }
-        int count = 0;
-                for(int i = 2;i<isPrime.length;i++){
-            if(isPrime(i)){
-            System.out.println(i);
-            count ++;
-        }
+        double percentage = (double)count * 100 / n; 
+        
+        System.out.println("There are " + count + " primes between 2 and " + n + 
+                           " (" + Math.round(percentage) + "% are primes)");
     }
-    System.out.println("There are " + count + " primes between 2 and "+ n +" "+(double)(count*100/(n-1))+"% are primes");
-    }
-  public static boolean isPrime(int x) {
-    if(x==1)
-        return false;
-    for(int i=2;i<x;i++){
-        if (x%i==0) {
-            return false;
-        }
-    }
-    return true;
-}
 }
